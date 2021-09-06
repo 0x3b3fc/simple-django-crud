@@ -1,0 +1,31 @@
+ {% extends 'basic_app/basic_app_base.html' %}
+
+ 
+ {% block title_block %}
+     School Detail
+ {% endblock title_block %}
+    
+ 
+ {% block body_block %}
+    <div class="jumbotron">
+        <h1>Welcome To the School Detail Page</h1>
+        <h2>School Details:</h2>
+        <p>Name: {{ school_detail.name }}</p>
+        <p>Principal: {{ school_detail.principal }}</p>
+        <p>Location: {{ school_detail.location }}</p>
+        <h3>Students:</h3>
+        
+        {% for student in school_detail.students.all %}
+            <p><b>{{ student.name }}</b> who is <b>{{ student.age }}</b> years old.</p>
+        {% endfor %}
+            
+    </div>
+
+    <div class="container">
+        <p>
+            <a class="btn btn-warning" href="{% url 'basic_app:update' pk=school_detail.pk %}">Update</a>
+            <a href="{% url 'basic_app:delete' pk=school_detail.pk %}" class="btn btn-danger">Delete</a>
+        </p>
+    </div>
+ {% endblock body_block %}
+     
